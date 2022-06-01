@@ -10,7 +10,7 @@
   <link href="<?php echo base_url; ?>Assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?php echo base_url; ?>Assets/css/main.min.css" rel="stylesheet">
 
-  <title>Hello, world!</title>
+  <title>Calendario 2.0</title>
 </head>
 
 <body>
@@ -31,20 +31,22 @@
         <form id="formulario">
           <div class="modal-body">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="title">
+              <input type="text" class="form-control" id="title" name="title">
               <label for="title" class="form-label">Evento</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="date" class="form-control" id="start">
+              <input type="date" class="form-control" id="start" name="start">
               <label for="start" class="form-label">Fecha</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="color" class="form-control" id="color">
+              <input type="color" class="form-control" id="color" name="color">
               <label for="color" class="form-label">Color</label>
             </div>
           </div>
           <div class="modal-footer">
-
+             <button class="btn btn-warning">Cancelar</button>
+             <button class="btn btn-danger">Eliminar</button>
+             <button class="btn btn-info" id="btnAccion" type="submit">Registrar</button>
           </div>
         </form>
 
@@ -59,6 +61,11 @@
   <script src="<?php echo base_url; ?>Assets/js/moment.js"></script>
   <script src="<?php echo base_url; ?>Assets/js/sweetalert2.all.min.js"></script>
   <script src="<?php echo base_url; ?>Assets/js/es.js"></script>
+  
+  <script>
+    const base_url = '<?php echo base_url; ?>';
+  </script>
+
   <script src="<?php echo base_url; ?>Assets/js/app.js"></script>
 
 
