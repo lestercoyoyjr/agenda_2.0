@@ -17,7 +17,17 @@ class Home extends Controller
             $color = $_POST['color'];
 
             $respuesta = $this->model->registrar($evento, $fecha, $color);
-            echo $respuesta;
+
+            if ($respuesta == 1) {
+                $mensaje = array('msg'=>'Evento Registrado', 'estado'=>true, 'tipo'=>'success');
+            } else {
+                $mensaje = array('msg'=>'ERROR: Error al registrar el evento', 'estado'=>false, 'tipo'=>'error');
+            }
+            echo json_encode($mensaje);
+            die();
         }
+    }
+    public function listar(){
+        $this->model->listarEventos();
     }
 }
