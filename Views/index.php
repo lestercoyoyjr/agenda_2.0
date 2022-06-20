@@ -46,7 +46,7 @@
           </div>
           <div class="modal-footer">
              <button class="btn btn-warning">Cancelar</button>
-             <button class="btn btn-danger">Eliminar</button>
+             <button class="btn btn-danger" type="button" id="btnEliminar">Eliminar</button>
              <button class="btn btn-info" id="btnAccion" type="submit">Registrar</button>
           </div>
         </form>

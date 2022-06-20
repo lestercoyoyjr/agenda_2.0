@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
       // Create event
       dateClick: function (info){
         // console.log(info);
+        frm.reset();
+        document.getElementById('id').value = '';
+        document.getElementById('btnEliminar').classList.add('d-none');
         document.getElementById('start').value= info.dateStr;
         document.getElementById('titulo').textContent= 'Registro de Evento';
         document.getElementById('btnAccion').textContent= 'Registrar';
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('titulo').textContent= 'Modificar Evento';
         document.getElementById('btnAccion').textContent= 'Modificar';
+        document.getElementById('btnEliminar').classList.remove('d-none');
 
         document.getElementById('id').value = info.event.id;
         document.getElementById('title').value = info.event.title;
