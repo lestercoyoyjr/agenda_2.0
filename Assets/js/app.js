@@ -15,12 +15,29 @@ document.addEventListener('DOMContentLoaded', function() {
       },
 
       events: base_url + 'Home/listar',
+      // Create event
       dateClick: function (info){
         // console.log(info);
         document.getElementById('start').value= info.dateStr;
         document.getElementById('titulo').textContent= 'Registro de Evento';
+        document.getElementById('btnAccion').textContent= 'Registrar';
+        myModal.show();
+      },
+      // Modifies event
+      eventClick: function (info){
+        console.log(info);
+
+        document.getElementById('titulo').textContent= 'Modificar Evento';
+        document.getElementById('btnAccion').textContent= 'Modificar';
+
+        document.getElementById('id').value = info.event.id;
+        document.getElementById('title').value = info.event.title;
+        document.getElementById('start').value = info.event.startStr;
+        myModal.show();
+        document.getElementById('color').value = info.event.backgroundColor;
         myModal.show();
       }
+
     });
     calendar.render();
 
