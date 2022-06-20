@@ -31,6 +31,8 @@ class Home extends Controller
     public function listar()
     {
         $data = $this->model->listarEventos();
-        print_r($data);
+        // print_r($data); just to show the array content
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
     }
 }

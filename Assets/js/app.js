@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
           center: 'title',
           right: 'dayGridMonth, timeGridWeek,listWeek'
       },
+
+      events: base_url + 'Home/listar',
       dateClick: function (info){
         // console.log(info);
         document.getElementById('start').value= info.dateStr;
