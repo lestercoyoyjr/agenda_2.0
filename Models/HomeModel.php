@@ -19,6 +19,12 @@
 
             return $msg;
         }
+        public function listarEventos()
+        {
+            $sql = "SELECT * FROM eventos";
+            // $data =  $this->selectAll($sql);
+            return $this->selectAll($sql);
+        }
     }
 
 ?>

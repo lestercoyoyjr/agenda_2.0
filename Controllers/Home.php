@@ -7,7 +7,8 @@ class Home extends Controller
     public function index(){
         $this->views->getView($this, 'index');
     }
-    public function registrar(){
+    public function registrar()
+    {
         // if one field or all are empty
         if (empty($_POST['title']) || empty($_POST['start']) || empty($_POST['color'])) {
             $mensaje = array('msg'=>'Todos los campos son requeridos', 'estado'=>false, 'tipo'=>'warning');
@@ -27,7 +28,9 @@ class Home extends Controller
             die();
         }
     }
-    public function listar(){
-        $this->model->listarEventos();
+    public function listar()
+    {
+        $data = $this->model->listarEventos();
+        print_r($data);
     }
 }
