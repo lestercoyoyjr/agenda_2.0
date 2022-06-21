@@ -2,6 +2,7 @@
 var myModal = new bootstrap.Modal(document.getElementById('myModal'));
 
 let frm = document.getElementById('formulario');
+let eliminar = document.getElementById('btnEliminar');
 
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // console.log(info);
         frm.reset();
         document.getElementById('id').value = '';
-        document.getElementById('btnEliminar').classList.add('d-none');
+        eliminar.classList.add('d-none');
         document.getElementById('start').value= info.dateStr;
         document.getElementById('titulo').textContent= 'Registro de Evento';
         document.getElementById('btnAccion').textContent= 'Registrar';
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('titulo').textContent= 'Modificar Evento';
         document.getElementById('btnAccion').textContent= 'Modificar';
-        document.getElementById('btnEliminar').classList.remove('d-none');
+        eliminar.classList.remove('d-none');
 
         document.getElementById('id').value = info.event.id;
         document.getElementById('title').value = info.event.title;
@@ -79,5 +80,43 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           }
       }
+    })
+
+    eliminar.addEventListener('click', function(){
+      myModal.hide();
+      Swal.fire({
+        title: 'Advertencia',
+        text: "Estas seguro de Eliminar? No podras deshacer este cambio!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, eliminar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const id = document.getElementById('id').value;
+          const url = base_url + 'Home/eliminar/' + id;
+          const http = new XMLHttpRequest();
+          http.open('GET', url, true);
+          http.send(new FormData(frm));
+          http.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+              // console.log(this.responseText);
+              const respuesta = JSON.parse(this.responseText);
+              console.log(respuesta);
+              if (respuesta.estado) {
+                // refresh page wihtout press f5
+                calendar.refetchEvents();
+              } 
+              Swal.fire(
+                'Aviso',
+                respuesta.msg,
+                respuesta.tipo
+              )
+            }
+          }
+        }
+      })
     })
   });
