@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
       },
 
       events: base_url + 'Home/listar',
+
+      editable: true,
+
       // Create event
       dateClick: function (info){
         // console.log(info);
@@ -41,8 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
         myModal.show();
         document.getElementById('color').value = info.event.backgroundColor;
         myModal.show();
+      },
+      eventDrop: function (info){
+        const id = info.event.id;
+        const fecha = info.event.startStr;
+        console.log(id, fecha);
       }
-
     });
     calendar.render();
 
