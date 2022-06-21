@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
       initialView: 'dayGridMonth',
       locale: 'es',
       headerToolbar:{
-          left:'prev, next, today',
+          left:'prev next today',
           center: 'title',
-          right: 'dayGridMonth, timeGridWeek,listWeek'
+          right: 'dayGridMonth timeGridWeek listWeek'
       },
 
       events: base_url + 'Home/listar',
@@ -48,7 +48,29 @@ document.addEventListener('DOMContentLoaded', function() {
       eventDrop: function (info){
         const id = info.event.id;
         const fecha = info.event.startStr;
-        console.log(id, fecha);
+        const url = base_url + 'Home/drop';
+        const http = new XMLHttpRequest();
+        const data = new FormData();
+        data.append('id', id);
+        data.append('fecha', fecha);
+        http.open('POST', url, true);
+        http.send(data);
+        http.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            const respuesta = JSON.parse(this.responseText);
+            console.log(respuesta);
+            if (respuesta.estado) {
+              // refresh page wihtout press f5
+              calendar.refetchEvents();
+            } 
+            Swal.fire(
+              'Aviso',
+              respuesta.msg,
+              respuesta.tipo
+            )
+          }
+        }
       }
     });
     calendar.render();

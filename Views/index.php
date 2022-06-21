@@ -31,7 +31,7 @@
         <form id="formulario">
           <div class="modal-body">
             <div class="form-floating mb-3">
-              <input type="text" id="id" name="id">
+              <input type="hidden" id="id" name="id">
               <input type="text" class="form-control" id="title" name="title">
               <label for="title" class="form-label">Evento</label>
             </div>
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="modal-footer">
-             <button class="btn btn-warning">Cancelar</button>
+             <button class="btn btn-warning" type="button" data-bs-dismiss="modal">Cancelar</button>
              <button class="btn btn-danger" type="button" id="btnEliminar">Eliminar</button>
              <button class="btn btn-info" id="btnAccion" type="submit">Registrar</button>
           </div>
@@ -59,7 +59,6 @@
   <!-- Libraries -->
   <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js"></script>
   <script src="<?php echo base_url; ?>Assets/js/main.min.js"></script>
-  <script src="<?php echo base_url; ?>Assets/js/moment.js"></script>
   <script src="<?php echo base_url; ?>Assets/js/sweetalert2.all.min.js"></script>
   <script src="<?php echo base_url; ?>Assets/js/es.js"></script>
   

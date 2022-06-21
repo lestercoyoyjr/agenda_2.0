@@ -61,4 +61,19 @@ class Home extends Controller
         echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
         die();
     }
+    
+    public function drop()
+    {   
+        $fecha = $_POST['fecha'];
+        $id = $_POST['id'];
+
+        $data = $this->model->drop($fecha, $id);
+        if ($data == 1) {
+            $mensaje = array('msg'=>'Evento movido', 'estado'=>true, 'tipo'=>'success');
+        } else {
+            $mensaje = array('msg'=>'ERROR: Error al mover el evento', 'estado'=>false, 'tipo'=>'error');
+        }
+        echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
